@@ -27,10 +27,10 @@ function displayMovie() {
         let rating = document.createElement('div');
         rating.classList.add('rating');
 
-        title.textContent = `${movie.title}`;
-        runtime.textContent = `${movie.runtime}`;
-        year.textContent = `${movie.year}`;
-        rating.textContent = `${movie.rating}`;
+        title.textContent = `Title: ${movie.title}`;
+        runtime.textContent = `Runtime: ${movie.runtime}`;
+        year.textContent = `Year: ${movie.year}`;
+        rating.textContent = `Rating: ${movie.rating}`;
 
         card.appendChild(title);
         card.appendChild(runtime);
