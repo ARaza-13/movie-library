@@ -1,7 +1,12 @@
 const library = document.querySelector('.library');
-const movieForm = document.getElementById('submitMovie');
+const form = document.querySelector('.form');
+const movieInfo = document.getElementById('submitMovie');
+const addBtn = document.querySelector('.add');
+const closeBtn = document.querySelector('.cancel');
 
-movieForm.onsubmit = addMovie;
+movieInfo.onsubmit = addMovie;
+addBtn.onclick = () => form.style.display = "block";
+closeBtn.onclick = () => form.style.display = "none";
 
 let myLibrary = [];
 
@@ -18,9 +23,6 @@ function getMovieInput() {
     const year = document.getElementById('year').value;
     const rating = document.getElementById('rating').value;
     return new Movie(title, runtime, year, rating);
-    // const movieInfo = Array.from(document.querySelectorAll('#submitMovie input')).reduce((acc, input) => ({
-    //      ...acc, [input.id]: input.value 
-    // }), {});
 }
 
 function addMovie(e) {
@@ -44,7 +46,7 @@ function displayMovie(movie) {
     rating.classList.add('rating');
 
     title.textContent = `Title: ${movie.title}`;
-    runtime.textContent = `Runtime: ${movie.runtime}`;
+    runtime.textContent = `Runtime: ${movie.runtime} mins`;
     year.textContent = `Year: ${movie.year}`;
     rating.textContent = `Rating: ${movie.rating}`;
 

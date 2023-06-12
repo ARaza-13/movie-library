@@ -10,10 +10,11 @@
     </head>
     <body>
         <div class="library">
-            <button class="add-movie">Add Movie</button>
+            <button class="add">Add Movie</button>
             <div class="form">
+                <h1>Add Movie</h1>
+                <button class="cancel">Cancel</button>
                 <form action="#" method="post" id="submitMovie">
-                    <h1>Add Movie</h1>
                     <div class="input">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" required>
@@ -28,10 +29,9 @@
                     </div>
                     <div class="input">
                         <label for="rating">Rating</label>
-                        <input type="number" id="rating" name="rating" required>
+                        <input type="number" id="rating" name="rating">
                     </div>
                     <button type="submit">Add</button>
-                    <button class="cancel">Cancel</button>
                 </form>
             </div>
         </div>
