@@ -5,3 +5,12 @@
 .form.active {
     display: block;
 }
+
+.error-msg {
+    display: none;
+    color: red;
+}
+
+.error-msg.active {
+    display: block;
+}

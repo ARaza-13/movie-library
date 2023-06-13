@@ -1,24 +1,17 @@
 const library = document.querySelector('.library');
 const formContainer = document.querySelector('.form');
 const form = document.getElementById('submitMovie');
-const newMovie = document.querySelector('.add');
-const closeBtn = document.querySelector('.cancel');
-
-form.onsubmit = addMovie;
-// add and close button to hide/show movie form
-newMovie.onclick = displayForm;
-closeBtn.onclick = closeForm;
+const openMovieForm = document.querySelector('.add');
+const closeMovieForm = document.querySelector('.cancel');
+const errorMsg = document.querySelector('.error-msg');
 
 // library array to store all our movie objects
 let myLibrary = [];
 
-// create movie object
-function Movie(title, runtime, year, rating) {
-    this.title = title;
-    this.runtime = runtime;
-    this.year = year;
-    this.rating = rating;
-}
+form.onsubmit = addMovie;
+// add and close button to hide/show movie form
+openMovieForm.onclick = displayForm;
+closeMovieForm.onclick = closeForm;
 
 function displayForm() {
     formContainer.classList.add('active');
@@ -27,6 +20,16 @@ function displayForm() {
 function closeForm() {
     formContainer.classList.remove('active');
     form.reset();
+    errorMsg.classList.remove('active');
+    errorMsg.textContent = '';
+}
+
+// create movie object
+function Movie(title, runtime, year, rating) {
+    this.title = title;
+    this.runtime = runtime;
+    this.year = year;
+    this.rating = rating;
 }
 
 // create a new movie object based on user input 
@@ -38,14 +41,26 @@ function getMovieInput() {
     return new Movie(title, runtime, year, rating);
 }
 
+// check if movie is already in library
+function validateInput(input) {
+    if (myLibrary.some(movie => movie.title === input.title)) {
+        errorMsg.textContent = "This movie is already in your library"
+        errorMsg.classList.add('active');
+        return;
+    }
+    return true;
+}
+
 // add the new movie object (acquired from input) into our library array
 function addMovie(e) {
     e.preventDefault();
     const newMovie = getMovieInput();
-    myLibrary.push(newMovie);
-    console.log(myLibrary);
-    closeForm();
-    displayMovie(newMovie);
+    if (validateInput(newMovie)) {
+        myLibrary.push(newMovie);
+        console.log(myLibrary);
+        closeForm();
+        displayMovie(newMovie);
+    }
 }
 
 // display the newly added movie object into the screen
