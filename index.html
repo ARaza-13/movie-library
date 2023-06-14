@@ -9,8 +9,25 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <div class="library">
-            <button class="add">Add Movie</button>
+        <div class="header-wrap">
+            <section class="header">
+                <div class="logo">
+                    <img src="images/movie-open-outline.svg" alt="open movie clapper">
+                    <h1>Movieboxd</h1>
+                </div>
+                <div class="nav">
+                    <ul class="nav-items">
+                        <li><a>Sign in</a></li>
+                        <li><a>Create Account</a></li>
+                        <li><a>Films</a></li>
+                        <li><a>Lists</a></li>
+                        <li><a>Members</a></li>
+                    </ul>
+                </div>
+                <button class="add"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
+            </section>
+        </div>
+        <section class="library">
             <div class="form">
                 <h1>Add Movie</h1>
                 <button class="cancel">Cancel</button>
@@ -21,20 +38,20 @@
                         <p class="error-msg"></p>
                     </div>
                     <div class="input">
+                        <label for="year">Year</label>
+                        <input type="number" id="year" name="year" min="1888"  max="" required>
+                    </div>
+                    <div class="input">
                         <label for="runtime">Runtime</label>
                         <input type="number" id="runtime" name="runtime" required>
                     </div>
                     <div class="input">
-                        <label for="year">Year</label>
-                        <input type="number" id="year" name="year" required>
-                    </div>
-                    <div class="input">
                         <label for="rating">Rating</label>
-                        <input type="number" id="rating" name="rating">
+                        <input type="number" id="rating" name="rating" min="0" max="5" step="0.5">
                     </div>
                     <button type="submit">Add</button>
                 </form>
             </div>
-        </div>
+        </section>
     </body>
 </html>
