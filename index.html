@@ -24,13 +24,15 @@
                         <li><a>Members</a></li>
                     </ul>
                 </div>
-                <button class="add"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
+                <button class="add img-btn"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
             </section>
         </div>
         <section class="library">
             <div class="form">
-                <h1>Add Movie</h1>
-                <button class="cancel">Cancel</button>
+                <div class="form-header">
+                    <h1>Add Movie</h1>
+                    <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
+                </div>
                 <form action="#" method="post" id="submitMovie">
                     <div class="input">
                         <label for="title">Title</label>
@@ -39,11 +41,11 @@
                     </div>
                     <div class="input">
                         <label for="year">Year</label>
-                        <input type="number" id="year" name="year" min="1888"  max="" required>
+                        <input type="number" id="year" name="year" min="1888" required>
                     </div>
                     <div class="input">
                         <label for="runtime">Runtime</label>
-                        <input type="number" id="runtime" name="runtime" required>
+                        <input type="number" id="runtime" name="runtime" min="1" max="1265" required>
                     </div>
                     <div class="input">
                         <label for="rating">Rating</label>

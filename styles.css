@@ -1,8 +1,12 @@
 :root {
     --white: #fff;
     --light-txt: #678;
+    --light1: #9ab;
     --dark1: #1e252e;
     --dark2: #14181c;
+    --green: #00b020;
+    --shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+    
 }
 
 * {
@@ -43,6 +47,7 @@ body {
 /* start of header */
 .header-wrap {
     background: var(--dark2);
+    box-shadow: var(--shadow);
 }
 
 .header {
@@ -68,7 +73,7 @@ body {
     font-weight: 600;
 }
 
-.add {
+.img-btn {
     border: none;
     cursor: pointer;
     appearance: none;
@@ -78,11 +83,75 @@ body {
 
 /* start of form popup */
 .form {
-    display: none;
+    background: var(--dark2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20rem;
+    border-radius: 1.25rem;
+    transform: translate(50%, 50%) scale(0);
+    z-index: 1;
 }
 
 .form.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.form-header {
+    display: flex;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.form-header h1 {
+    flex: 1;
+    flex-basis: 0;
+    text-align: center;
+}
+
+.cancel img {
+    width: 1.5rem;
+}
+
+#submitMovie {
+    display: flex;
+    flex-flow: column wrap;
+    padding-bottom: 0.5rem;
+}
+
+#submitMovie > * {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.input {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+input {
+    color: var(--light-txt);
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid var(--white);
+    padding: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--light1);
+}
+
+form button {
+    padding: 0.5rem 0;
+    background: var(--green);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
 }
 
 .error-msg {
