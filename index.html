@@ -27,33 +27,36 @@
                 <button class="add img-btn"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
             </section>
         </div>
-        <section class="library">
-            <div class="form">
-                <div class="form-header">
-                    <h1>Add Movie</h1>
-                    <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
-                </div>
-                <form action="#" method="post" id="submitMovie">
-                    <div class="input">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" required>
-                        <p class="error-msg"></p>
-                    </div>
-                    <div class="input">
-                        <label for="year">Year</label>
-                        <input type="number" id="year" name="year" min="1888" required>
-                    </div>
-                    <div class="input">
-                        <label for="runtime">Runtime</label>
-                        <input type="number" id="runtime" name="runtime" min="1" max="1265" required>
-                    </div>
-                    <div class="input">
-                        <label for="rating">Rating</label>
-                        <input type="number" id="rating" name="rating" min="0" max="5" step="0.5">
-                    </div>
-                    <button type="submit">Add</button>
-                </form>
+        <section class="library"></section>
+        <div class="form">
+            <div class="form-header">
+                <h1>Add Movie</h1>
+                <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
             </div>
-        </section>
+            <form action="#" method="post" id="submitMovie">
+                <div class="input">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                    <p class="error-msg"></p>
+                </div>
+                <div class="input">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" name="year" min="1888" required>
+                </div>
+                <div class="input">
+                    <label for="runtime">Runtime</label>
+                    <input type="number" id="runtime" name="runtime" min="1" max="1265" required>
+                </div>
+                <div class="input">
+                    <label for="rating">Rating</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" step="0.5" required>
+                </div>
+                <div class="input">
+                    <label for="poster">URL for Movie Poster</label>
+                    <input type="url" id="poster" name="poster" placeholder="https://example.com" pattern="https://.*">
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
     </body>
 </html>

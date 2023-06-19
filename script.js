@@ -28,11 +28,12 @@ function closeForm() {
 }
 
 // create movie object
-function Movie(title, year, runtime, rating) {
+function Movie(title, year, runtime, rating, poster) {
     this.title = title;
     this.year = year;
     this.runtime = runtime;
     this.rating = rating;
+    this.poster = poster;
 }
 
 // create a new movie object based on user input 
@@ -41,17 +42,27 @@ function getMovieInput() {
     const year = document.getElementById('year').value;
     const runtime = document.getElementById('runtime').value;
     const rating = document.getElementById('rating').value;
-    return new Movie(title, year, runtime, rating);
+    const poster = document.getElementById('poster').value;
+    return new Movie(title, year, runtime, rating, poster);
 }
 
 // check if movie is already in library
 function validateInput(input) {
     if (myLibrary.some(movie => movie.title === input.title)) {
-        errorMsg.textContent = "This movie is already in your library"
+        errorMsg.textContent = "This movie is already in your library";
         errorMsg.classList.add('active');
         return;
     }
     return true;
+}
+
+function checkPoster(poster) {
+    let validImg = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(poster);
+    if (validImg) {
+        return poster;
+    } else {
+        return "images/placeholder.jpg";
+    }
 }
 
 // add the new movie object (acquired from input) into our library array
@@ -69,29 +80,38 @@ function addMovie(e) {
 // display the newly added movie object into the screen
 function displayMovie(movie) {
     let movieCard = document.createElement('div');
+    let poster = document.createElement('img');
     let title = document.createElement('div');
     let year = document.createElement('div');
     let runtime = document.createElement('div');
     let rating = document.createElement('div');
     let removeBtn = document.createElement('button');
+    let removeImg = document.createElement('img');
 
     movieCard.classList.add('card');
+    poster.classList.add('poster');
     title.classList.add('title');
     year.classList.add('year');
     runtime.classList.add('runtime');
     rating.classList.add('rating');
     removeBtn.classList.add('remove');
+    removeBtn.classList.add('img-btn');
 
+    poster.src = checkPoster(movie.poster);
+    poster.alt = "poster";
     title.textContent = `${movie.title}`;
     year.textContent = `${movie.year}`;
     runtime.textContent = `${movie.runtime} mins`;
     rating.textContent = `${movie.rating} stars`;
-    removeBtn.textContent = 'Remove';
+    removeImg.src = "images/close-thick.svg";
+    removeImg.alt = "close";
 
+    movieCard.appendChild(poster);
     movieCard.appendChild(title);
     movieCard.appendChild(year);
     movieCard.appendChild(runtime);
     movieCard.appendChild(rating);
+    removeBtn.appendChild(removeImg);
     movieCard.appendChild(removeBtn);
     library.appendChild(movieCard); 
 
