@@ -31,7 +31,8 @@ img {
 }
 
 .cancel img, 
-.remove img {
+.remove img,
+.rating img {
     width: 1.5rem;
 }
 

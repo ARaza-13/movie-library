@@ -56,6 +56,7 @@ function validateInput(input) {
     return true;
 }
 
+// validate if the URL movie image being added is a valid image URL 
 function checkPoster(poster) {
     let validImg = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(poster);
     if (validImg) {
@@ -97,14 +98,27 @@ function displayMovie(movie) {
     removeBtn.classList.add('remove');
     removeBtn.classList.add('img-btn');
 
-    poster.src = checkPoster(movie.poster);
-    poster.alt = "poster";
     title.textContent = `${movie.title}`;
     year.textContent = `${movie.year}`;
     runtime.textContent = `${movie.runtime} mins`;
-    rating.textContent = `${movie.rating} stars`;
+    // rating.textContent = `${movie.rating} stars`;
+
+    poster.src = checkPoster(movie.poster);
+    poster.alt = "poster";
     removeImg.src = "images/close-thick.svg";
     removeImg.alt = "close";
+
+    for (let i = 0; i < Math.floor(movie.rating); i++) {
+       let star = document.createElement('img');
+       star.src = "images/star.svg"
+       rating.appendChild(star);
+    }
+
+    if (movie.rating % 1 !== 0) {
+       let halfStar = document.createElement('img');
+       halfStar.src = "images/star-half.svg"
+       rating.appendChild(halfStar);
+    } 
 
     movieCard.appendChild(poster);
     movieCard.appendChild(title);
