@@ -1,5 +1,5 @@
 const library = document.querySelector('.library');
-const formContainer = document.querySelector('.form');
+const formWrapper = document.querySelector('.form-wrapper');
 const form = document.getElementById('submitMovie');
 const openMovieForm = document.querySelector('.add');
 const closeMovieForm = document.querySelector('.cancel');
@@ -17,11 +17,11 @@ openMovieForm.onclick = displayForm;
 closeMovieForm.onclick = closeForm;
 
 function displayForm() {
-    formContainer.classList.add('active');
+    formWrapper.classList.add('active');
 }
 
 function closeForm() {
-    formContainer.classList.remove('active');
+    formWrapper.classList.remove('active');
     form.reset();
     errorMsg.classList.remove('active');
     errorMsg.textContent = '';
