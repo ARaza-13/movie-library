@@ -88,6 +88,8 @@ function displayMovie(movie) {
     let rating = document.createElement('div');
     let removeBtn = document.createElement('button');
     let removeImg = document.createElement('img');
+    let editBtn = document.createElement('button');
+    let editImg = document.createElement('img');
 
     movieCard.classList.add('card');
     poster.classList.add('poster');
@@ -97,16 +99,20 @@ function displayMovie(movie) {
     rating.classList.add('rating');
     removeBtn.classList.add('remove');
     removeBtn.classList.add('img-btn');
+    editBtn.classList.add('edit');
+    editBtn.classList.add('img-btn');
 
     title.textContent = `${movie.title}`;
     year.textContent = `${movie.year}`;
     runtime.textContent = `${movie.runtime} mins`;
-    // rating.textContent = `${movie.rating} stars`;
 
     poster.src = checkPoster(movie.poster);
     poster.alt = "poster";
     removeImg.src = "images/close-thick.svg";
     removeImg.alt = "close";
+    editImg.src = "images/movie-edit-outline.svg";
+    editImg.alt = "edit";
+
 
     for (let i = 0; i < Math.floor(movie.rating); i++) {
        let star = document.createElement('img');
@@ -127,6 +133,8 @@ function displayMovie(movie) {
     movieCard.appendChild(rating);
     removeBtn.appendChild(removeImg);
     movieCard.appendChild(removeBtn);
+    editBtn.appendChild(editImg);
+    movieCard.appendChild(editBtn);
     library.appendChild(movieCard); 
 
     // remove the movie object from our library array and from the webpage display
