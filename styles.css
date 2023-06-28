@@ -28,6 +28,7 @@ section {
 img {
     filter: brightness(0) invert(1);
     width: 1.5rem;
+    pointer-events: none;
 }
 
 .header img {
@@ -166,13 +167,13 @@ body {
     text-align: center;
 }
 
-#submitMovie {
+form {
     display: flex;
     flex-flow: column wrap;
     padding-bottom: 0.5rem;
 }
 
-#submitMovie > * {
+form > * {
     margin: 0.5rem 0;
     font-size: 1.25rem;
 }
