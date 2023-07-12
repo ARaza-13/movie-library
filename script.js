@@ -1,3 +1,23 @@
+class Movie {
+    constructor(title, year, runtime, rating, poster) {
+        this.title = title;
+        this.year = year;
+        this.runtime = runtime;
+        this.rating = rating;
+        this.poster = poster;
+    }
+}
+
+class Library {
+    constructor() {
+        this.movies = [];
+    }
+
+    addMovie(newMovie) {
+        this.movies.push(newMovie);
+    }
+}
+
 const library = document.querySelector('.library');
 const addformWrap = document.querySelector('.add-movie');
 const editformWrap = document.querySelector('.edit-movie');
