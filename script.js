@@ -95,9 +95,8 @@ const addMovieBtn = document.getElementById('add-movie-btn');
 const closeBtn = document.getElementById('close-btn');
 
 const openAddMovieModal = () => {
-    // addMovieForm.reset();
+    addMovieForm.reset();
     addMovieModal.classList.add('active');
-    console.log("hi");
 }
 
 const closeAddMovieModal = () => {
@@ -108,8 +107,30 @@ const resetMovieList = () => {
     movieList.innerHTML = '';
 }
 
+const getMovieInput = () => {
+    const title = document.getElementById('add-title').value;
+    const year = document.getElementById('add-year').value;
+    const runtime = document.getElementById('add-runtime').value;
+    const rating = document.getElementById('add-rating').value;
+    const poster = document.getElementById('add-poster').value;
+    return new Movie(title, year, runtime, rating, poster);
+}
+
+const addMovie = (e) => {
+    e.preventDefault();
+    const newMovie = getMovieInput();
+
+    library.addMovie(newMovie);
+    library.renderMovies();
+    console.log(library.movies);
+
+    addMovieForm.reset();
+    closeAddMovieModal();
+}
+
 addMovieBtn.onclick = openAddMovieModal;
 closeBtn.onclick = closeAddMovieModal;
+addMovieForm.onsubmit = addMovie;
 const movie = new Movie("The Dark Knight", "2008", "152", "5", "");
 library.addMovie(movie);
 library.renderMovies();
