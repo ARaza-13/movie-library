@@ -89,10 +89,27 @@ const createMovieCard = (movie) =>  {
     movieList.appendChild(movieCard); 
 }
 
+const addMovieForm = document.getElementById('add-movie-form');
+const addMovieModal = document.getElementById('add-movie-modal');
+const addMovieBtn = document.getElementById('add-movie-btn');
+const closeBtn = document.getElementById('close-btn');
+
+const openAddMovieModal = () => {
+    // addMovieForm.reset();
+    addMovieModal.classList.add('active');
+    console.log("hi");
+}
+
+const closeAddMovieModal = () => {
+    addMovieModal.classList.remove('active');
+}
+
 const resetMovieList = () => {
     movieList.innerHTML = '';
 }
 
+addMovieBtn.onclick = openAddMovieModal;
+closeBtn.onclick = closeAddMovieModal;
 const movie = new Movie("The Dark Knight", "2008", "152", "5", "");
 library.addMovie(movie);
 library.renderMovies();

@@ -24,73 +24,69 @@
                         <li><a>Members</a></li>
                     </ul>
                 </div>
-                <button class="add img-btn"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
+                <button id="add-movie-btn" class="add img-btn"><img src="images/movie-open-plus-outline.svg" alt="add movie clapper"></button>
             </section>
         </div>
         <section id="movie-list"></section>
-        <div class="form-wrapper add-movie">
-            <div class="form">
-                <div class="form-header">
-                    <h1>Add Movie</h1>
-                    <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
-                </div>
-                <form action="#" method="post" id="add-movie">
-                    <div class="input">
-                        <label for="add-title">Title</label>
-                        <input type="text" id="add-title" name="title" required>
-                        <p class="error-msg"></p>
-                    </div>
-                    <div class="input">
-                        <label for="add-year">Year</label>
-                        <input type="number" id="add-year" name="year" min="1888" required>
-                    </div>
-                    <div class="input">
-                        <label for="add-runtime">Runtime</label>
-                        <input type="number" id="add-runtime" name="runtime" min="1" max="1265" required>
-                    </div>
-                    <div class="input">
-                        <label for="add-rating">Rating</label>
-                        <input type="number" id="add-rating" name="rating" min="0.5" max="5" step="0.5" required>
-                    </div>
-                    <div class="input">
-                        <label for="add-poster">URL for Movie Poster</label>
-                        <input type="url" id="add-poster" name="poster" placeholder="https://example.com" pattern="https://.*">
-                    </div>
-                    <button type="submit">Add</button>
-                </form>
+        <div id="add-movie-modal" class="form">
+            <div class="form-header">
+                <h1>Add Movie</h1>
+                <button id="close-btn" class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
             </div>
+            <form action="#" method="post" id="add-movie">
+                <div class="input">
+                    <label for="add-title">Title</label>
+                    <input type="text" id="add-title" name="title" required>
+                    <p class="error-msg"></p>
+                </div>
+                <div class="input">
+                    <label for="add-year">Year</label>
+                    <input type="number" id="add-year" name="year" min="1888" required>
+                </div>
+                <div class="input">
+                    <label for="add-runtime">Runtime</label>
+                    <input type="number" id="add-runtime" name="runtime" min="1" max="1265" required>
+                </div>
+                <div class="input">
+                    <label for="add-rating">Rating</label>
+                    <input type="number" id="add-rating" name="rating" min="0.5" max="5" step="0.5" required>
+                </div>
+                <div class="input">
+                    <label for="add-poster">URL for Movie Poster</label>
+                    <input type="url" id="add-poster" name="poster" placeholder="https://example.com" pattern="https://.*">
+                </div>
+                <button type="submit">Add</button>
+            </form>
         </div>
-        <div class="form-wrapper edit-movie">
-            <div class="form">
-                <div class="form-header">
-                    <h1>Edit Movie</h1>
-                    <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
-                </div>
-                <form action="#" method="post" id="edit-movie">
-                    <div class="input">
-                        <label for="edit-title">Title</label>
-                        <input type="text" id="edit-title" name="title" required>
-                        <p class="error-msg"></p>
-                    </div>
-                    <div class="input">
-                        <label for="edit-year">Year</label>
-                        <input type="number" id="edit-year" name="year" min="1888" required>
-                    </div>
-                    <div class="input">
-                        <label for="edit-runtime">Runtime</label>
-                        <input type="number" id="edit-runtime" name="runtime" min="1" max="1265" required>
-                    </div>
-                    <div class="input">
-                        <label for="edit-rating">Rating</label>
-                        <input type="number" id="edit-rating" name="rating" min="0.5" max="5" step="0.5" required>
-                    </div>
-                    <div class="input">
-                        <label for="edit-poster">URL for Movie Poster</label>
-                        <input type="url" id="edit-poster" name="poster" placeholder="https://example.com" pattern="https://.*">
-                    </div>
-                    <button type="submit">Update</button>
-                </form>
+        <div id="edit-movie-modal" class="form">
+            <div class="form-header">
+                <h1>Edit Movie</h1>
+                <button class="cancel img-btn"><img src="images/close-thick.svg" alt="close"></button>
             </div>
+            <form action="#" method="post" id="edit-movie">
+                <div class="input">
+                    <label for="edit-title">Title</label>
+                    <input type="text" id="edit-title" name="title" required>
+                    <p class="error-msg"></p>
+                </div>
+                <div class="input">
+                    <label for="edit-year">Year</label>
+                    <input type="number" id="edit-year" name="year" min="1888" required>
+                </div>
+                <div class="input">
+                    <label for="edit-runtime">Runtime</label>
+                    <input type="number" id="edit-runtime" name="runtime" min="1" max="1265" required>
+                </div>
+                <div class="input">
+                    <label for="edit-rating">Rating</label>
+                    <input type="number" id="edit-rating" name="rating" min="0.5" max="5" step="0.5" required>
+                </div>
+                <div class="input">
+                    <label for="edit-poster">URL for Movie Poster</label>
+                    <input type="url" id="edit-poster" name="poster" placeholder="https://example.com" pattern="https://.*">
+                </div>
+                <button type="submit">Update</button>
+            </form>
         </div>
     </body>
 </html>
