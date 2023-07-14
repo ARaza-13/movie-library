@@ -17,6 +17,14 @@ class Library {
         this.movies.push(newMovie);
     }
 
+    removeMovie(title) {
+        this.movies = this.movies.filter((movie) => movie.title != title);
+    }
+
+    getMovie(title) {
+        return this.movies.find((movie) => movie.title === title);
+    }
+
     renderMovies() {
         resetMovieList();
         for (let movie of this.movies) {
@@ -52,7 +60,7 @@ const createMovieCard = (movie) =>  {
     rating.classList.add('rating');
     removeBtn.classList.add('remove');
     removeBtn.classList.add('img-btn');
-    // removeBtn.onclick = removeMovie;
+    removeBtn.onclick = removeMovie;
     editBtn.classList.add('edit');
     editBtn.classList.add('img-btn');
     // editBtn.addEventListener("click", displayForm);
@@ -108,7 +116,7 @@ const resetMovieList = () => {
 }
 
 const getMovieInput = () => {
-    const title = document.getElementById('add-title').value;
+    const title = document.getElementById('add-title').value.trim();
     const year = document.getElementById('add-year').value;
     const runtime = document.getElementById('add-runtime').value;
     const rating = document.getElementById('add-rating').value;
@@ -126,6 +134,14 @@ const addMovie = (e) => {
 
     addMovieForm.reset();
     closeAddMovieModal();
+}
+
+const removeMovie = (e) => {
+    const title = e.target.parentNode.querySelector('.title').textContent;
+
+    library.removeMovie(title);
+    library.renderMovies();
+    console.log(library.movies);
 }
 
 addMovieBtn.onclick = openAddMovieModal;
@@ -291,15 +307,4 @@ console.log(library.movies);
 //         halfStar.src = "images/star-half.svg"
 //         rating.appendChild(halfStar);
 //     }
-// }
-
-// function updateMovieGrid() {
-//     resetMovieGrid();
-//     for (let movie of myLibrary) {
-//         createMovieCard(movie);
-//     }
-// } 
-
-// function resetMovieGrid() {
-//     movieList.innerHTML = '';
 // }
