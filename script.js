@@ -6,6 +6,14 @@ class Movie {
         this.rating = rating;
         this.poster = poster;
     }
+
+    updateMovie(title, year, runtime, rating, poster) {
+        this.title = title;
+        this.year = year;
+        this.runtime = runtime;
+        this.rating = rating;
+        this.poster = poster;
+    }
 }
 
 class Library {
@@ -26,59 +34,47 @@ class Library {
     }
 
     renderMovies() {
-        resetMovieList();
+        const movieList = document.getElementById('movie-list');
+        movieList.innerHTML = '';
+
         for (let movie of this.movies) {
-            createMovieCard(movie);
+            const movieCard = createMovieCard(movie);
+            movieList.appendChild(movieCard); 
         } 
     }
 }
 
 const library = new Library();
 
-const movieList = document.getElementById('movie-list');
-
 // display the newly added movie object into the screen
 const createMovieCard = (movie) =>  {
     const movieCard = document.createElement('div');
-    const poster = document.createElement('img');
-    const movieInfo = document.createElement('div');
-    const title = document.createElement('div');
-    const year = document.createElement('div');
-    const runtime = document.createElement('div');
-    const rating = document.createElement('div');
-    const removeBtn = document.createElement('button');
-    const removeImg = document.createElement('img');
-    const editBtn = document.createElement('button');
-    const editImg = document.createElement('img');
-
     movieCard.classList.add('card');
+
+    const poster = document.createElement('img');
     poster.classList.add('poster');
-    movieInfo.classList.add('info');
-    title.classList.add('title');
-    year.classList.add('year');
-    runtime.classList.add('runtime');
-    rating.classList.add('rating');
-    removeBtn.classList.add('remove');
-    removeBtn.classList.add('img-btn');
-    removeBtn.onclick = removeMovie;
-    editBtn.classList.add('edit');
-    editBtn.classList.add('img-btn');
-    // editBtn.addEventListener("click", displayForm);
-    // editBtn.addEventListener("click", editMovie);
-
-    title.textContent = `${movie.title}`;
-    year.textContent = `${movie.year}`;
-    runtime.textContent = `${movie.runtime} mins`;
-    rating.textContent = `${movie.rating} stars`;
-
     // poster.src = checkPoster(movie.poster);
     poster.src = `${movie.poster}`;
     poster.alt = "poster";
-    removeImg.src = "images/close-thick.svg";
-    removeImg.alt = "close";
-    editImg.src = "images/movie-edit-outline.svg";
-    editImg.alt = "edit";
 
+    const movieInfo = document.createElement('div');
+    movieInfo.classList.add('info');
+
+    const title = document.createElement('div');
+    title.classList.add('title');
+    title.textContent = `${movie.title}`;
+
+    const year = document.createElement('div');
+    year.classList.add('year');
+    year.textContent = `${movie.year}`;
+
+    const runtime = document.createElement('div');
+    runtime.classList.add('runtime');
+    runtime.textContent = `${movie.runtime} mins`;
+
+    const rating = document.createElement('div');
+    rating.classList.add('rating');
+    rating.textContent = `${movie.rating} stars`;
     // getRating(rating, movie);
 
     movieInfo.appendChild(title);
@@ -86,33 +82,76 @@ const createMovieCard = (movie) =>  {
     movieInfo.appendChild(runtime);
     movieInfo.appendChild(rating);
 
-    removeBtn.appendChild(removeImg);
-    editBtn.appendChild(editImg);
-
     movieCard.appendChild(poster);
     movieCard.appendChild(movieInfo);
+
+    const removeBtn = createRemoveBtn(movie);
     movieCard.appendChild(removeBtn);
+
+    const editBtn = createEditButton(movie);
     movieCard.appendChild(editBtn);
 
-    movieList.appendChild(movieCard); 
+    return movieCard;
+}
+
+const createRemoveBtn = (movie) => {
+    const removeBtn = document.createElement('button');
+    removeBtn.classList.add('remove');
+    removeBtn.classList.add('img-btn');
+    removeBtn.onclick = () => removeMovie(movie.title);
+
+    const removeImg = document.createElement('img');
+    removeImg.src = "images/close-thick.svg";
+    removeImg.alt = "close";
+
+    removeBtn.appendChild(removeImg);
+    return removeBtn;
+}
+
+const createEditButton = (movie) => {
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('edit');
+    editBtn.classList.add('img-btn');
+    editBtn.onclick = () => openEditMovieModal(movie);
+
+    const editImg = document.createElement('img');
+    editImg.src = "images/movie-edit-outline.svg";
+    editImg.alt = "edit";
+
+    editBtn.appendChild(editImg);
+    return editBtn;
 }
 
 const addMovieForm = document.getElementById('add-movie-form');
 const addMovieModal = document.getElementById('add-movie-modal');
+
+const editMovieForm = document.getElementById('edit-movie-form');
+const editMovieModal = document.getElementById('edit-movie-modal');
+
 const addMovieBtn = document.getElementById('add-movie-btn');
-const closeBtn = document.getElementById('close-btn');
+const closeBtn = document.querySelectorAll('.cancel');
 
 const openAddMovieModal = () => {
     addMovieForm.reset();
     addMovieModal.classList.add('active');
 }
 
-const closeAddMovieModal = () => {
+const closeModal = () => {
     addMovieModal.classList.remove('active');
+    editMovieModal.classList.remove('active');
 }
 
-const resetMovieList = () => {
-    movieList.innerHTML = '';
+const openEditMovieModal = (movie) => {
+    editMovieModal.classList.add('active');
+    // populate the edit form with movie info
+    const editInputs = getEditInputFields();
+    editInputs.titleInput.value = movie.title;
+    editInputs.yearInput.value = movie.year;
+    editInputs.runtimeInput.value = movie.runtime;
+    editInputs.ratingInput.value = movie.rating;
+    editInputs.posterInput.value = movie.poster;
+
+    editMovieForm.onsubmit = (e) => updateMovie(e, movie);
 }
 
 const getMovieInput = () => {
@@ -124,6 +163,16 @@ const getMovieInput = () => {
     return new Movie(title, year, runtime, rating, poster);
 }
 
+const getEditInputFields = () => {
+    return {
+        titleInput: document.getElementById('edit-title'),
+        yearInput: document.getElementById('edit-year'),
+        runtimeInput: document.getElementById('edit-runtime'),
+        ratingInput: document.getElementById('edit-rating'),
+        posterInput: document.getElementById('edit-poster')
+    };
+}
+
 const addMovie = (e) => {
     e.preventDefault();
     const newMovie = getMovieInput();
@@ -133,20 +182,34 @@ const addMovie = (e) => {
     console.log(library.movies);
 
     addMovieForm.reset();
-    closeAddMovieModal();
+    closeModal();
 }
 
-const removeMovie = (e) => {
-    const title = e.target.parentNode.querySelector('.title').textContent;
-
+const removeMovie = (title) => {
     library.removeMovie(title);
     library.renderMovies();
     console.log(library.movies);
 }
 
+const updateMovie = (e, movie) => {
+    e.preventDefault();
+    const editInputs = getEditInputFields();
+    const updatedTitle = editInputs.titleInput.value;
+    const updatedYear = editInputs.yearInput.value;
+    const updatedRuntime = editInputs.runtimeInput.value;
+    const updatedRating = editInputs.ratingInput.value;
+    const updatedPoster = editInputs.posterInput.value;
+
+    movie.updateMovie(updatedTitle, updatedYear, updatedRuntime, updatedRating, updatedPoster);
+
+    closeModal();
+    library.renderMovies();
+    console.log(library.movies);
+}
+
 addMovieBtn.onclick = openAddMovieModal;
-closeBtn.onclick = closeAddMovieModal;
 addMovieForm.onsubmit = addMovie;
+closeBtn.forEach(modal => modal.onclick = closeModal);
 const movie = new Movie("The Dark Knight", "2008", "152", "5", "");
 library.addMovie(movie);
 library.renderMovies();
