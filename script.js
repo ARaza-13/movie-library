@@ -237,7 +237,3 @@ closeBtn.forEach(modal => modal.onclick = closeModal);
 const currentYear = new Date().getFullYear();
 addMaxYear.max = currentYear;
 editMaxYear.max = currentYear;
-const movie = new Movie("The Dark Knight", "2008", "152", "5", "");
-library.addMovie(movie);
-library.renderMovies();
-console.log(library.movies);
