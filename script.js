@@ -74,8 +74,7 @@ const createMovieCard = (movie) =>  {
 
     const rating = document.createElement('div');
     rating.classList.add('rating');
-    rating.textContent = `${movie.rating} stars`;
-    // getRating(rating, movie);
+    getRating(rating, movie);
 
     movieInfo.appendChild(title);
     movieInfo.appendChild(year);
@@ -92,6 +91,20 @@ const createMovieCard = (movie) =>  {
     movieCard.appendChild(editBtn);
 
     return movieCard;
+}
+
+const getRating = (rating, movie) => {
+    for (let i = 0; i < Math.floor(movie.rating); i++) {
+        const star = document.createElement('img');
+        star.src = "images/star.svg"
+        rating.appendChild(star);
+    }
+ 
+     if (movie.rating % 1 !== 0) {
+        const halfStar = document.createElement('img');
+        halfStar.src = "images/star-half.svg"
+        rating.appendChild(halfStar);
+    }
 }
 
 const createRemoveBtn = (movie) => {
@@ -143,6 +156,7 @@ const closeModal = () => {
 
 const openEditMovieModal = (movie) => {
     editMovieModal.classList.add('active');
+
     // populate the edit form with movie info
     const editInputs = getEditInputFields();
     editInputs.titleInput.value = movie.title;
@@ -194,7 +208,7 @@ const removeMovie = (title) => {
 const updateMovie = (e, movie) => {
     e.preventDefault();
     const editInputs = getEditInputFields();
-    const updatedTitle = editInputs.titleInput.value;
+    const updatedTitle = editInputs.titleInput.value.trim();
     const updatedYear = editInputs.yearInput.value;
     const updatedRuntime = editInputs.runtimeInput.value;
     const updatedRating = editInputs.ratingInput.value;
@@ -356,18 +370,4 @@ console.log(library.movies);
 //     const title = current.parentNode.querySelector('.title').textContent;
 //     return myLibrary.find(movie => movie.title === title);
 
-// }
-
-// function getRating(rating, movie) {
-//     for (let i = 0; i < Math.floor(movie.rating); i++) {
-//         let star = document.createElement('img');
-//         star.src = "images/star.svg"
-//         rating.appendChild(star);
-//     }
- 
-//      if (movie.rating % 1 !== 0) {
-//         let halfStar = document.createElement('img');
-//         halfStar.src = "images/star-half.svg"
-//         rating.appendChild(halfStar);
-//     }
 // }
